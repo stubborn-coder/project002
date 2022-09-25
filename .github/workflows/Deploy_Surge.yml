@@ -6,6 +6,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
     steps:
     - uses: actions/checkout@v3
     - name: Use Node.js
@@ -13,7 +16,7 @@ jobs:
       with:
         node-version: 12
     - name: Install Packages
-      run: sudo npm install
+      run: npm install
     - name: Build page
       run: npm run build
     - name: Install Surge
